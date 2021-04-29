@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ConversaoResponse } from '../../models/conversao-response.model';
+import { Conversao } from '../../models/conversao.model';
+import { Moeda } from '../../models/moeda.model';
+import { ConversorService } from '../../services/conversor.service';
 import { MoedaService } from '../../services/moeda.service';
 
 @Component({
@@ -8,9 +13,33 @@ import { MoedaService } from '../../services/moeda.service';
 })
 export class ConversorComponent implements OnInit {
 
-  constructor(private moedaService: MoedaService) { }
+  moedas: Moeda[];
+  conversao: Conversao;
+  possuiErro: boolean;
+  conversaoResponse: ConversaoResponse;
+  
+  @ViewChild("conversaoForm") conversaoForm: NgForm;
+  
+  constructor(private moedaService: MoedaService, 
+    private ConversorService: ConversorService) { }
 
   ngOnInit(): void {
+    this.moedas = this.moedaService.listarTodas();
+    this.init();
   }
+
+  init(): void {
+    this.conversao = new Conversao();
+    this.conversao.moedaDe = "USD";
+    this.conversao.moedaPara = "BRL";
+    this.possuiErro = false;
+  }
+
+  converter(): void {
+    if(this.conversaoForm.form.valid)
+      alert('Convertendo: ' + JSON.stringify(this.conversao));
+  }
+
+  
 
 }
