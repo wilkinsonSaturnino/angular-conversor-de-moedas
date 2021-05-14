@@ -4,10 +4,12 @@ import { ConversorComponent } from './components/conversor/conversor.component';
 import { MoedaService } from './services/moeda.service';
 import { ConversorService } from './services/conversor.service';
 import { FormsModule } from '@angular/forms';
+import { NumeroDirective } from './directives/numero.directive';
 
 @NgModule({
   declarations: [
-    ConversorComponent
+    ConversorComponent,
+    NumeroDirective
   ],
   imports: [
     CommonModule,

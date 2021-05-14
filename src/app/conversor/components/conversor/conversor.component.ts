@@ -28,6 +28,11 @@ export class ConversorComponent implements OnInit {
     this.init();
   }
 
+  /**
+   * Efetua a chamada para a conversão dos valores.
+   *
+   * @return void
+   */  
   init(): void {
     this.conversao = new Conversao();
     this.conversao.moedaDe = "USD";
@@ -35,6 +40,11 @@ export class ConversorComponent implements OnInit {
     this.possuiErro = false;
   }
 
+  /**
+   * Efetua a chamada para a conversão dos valores.
+   *
+   * @return void
+   */  
   converter(): void {
     if(this.conversaoForm.form.valid)
       alert('Convertendo: ' + JSON.stringify(this.conversao));
